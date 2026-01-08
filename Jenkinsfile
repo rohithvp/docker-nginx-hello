@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "rohithvp/hello-nginx-app"
         DOCKERHUB = credentials('dockerhub-creds')
-        DEPLOY_SERVER = "cloud_user@13.233.122.73"
+        DEPLOY_SERVER = "cloud_user@3.108.227.175"
     }
 
     stages {
