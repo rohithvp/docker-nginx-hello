@@ -11,7 +11,7 @@ pipeline {
 
         stage('Clone Code') {
             steps {
-                git branch: 'main', url: 'git@github.com:rohithvp/docker-nginx-hello.git'
+                git branch: 'main', url: 'https://github.com/rohithvp/docker-nginx-hello.git'
             }
         }
 
