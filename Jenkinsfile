@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t hello-nginx-app:latest .'
+                sh 'docker build -t rohithvp/hello-nginx-app:latest .'
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 sh '''
                 ssh -o StrictHostKeyChecking=no $DEPLOY_SERVER "
-                    docker pull hello-nginx-app:latest  &&
+                    docker pull rohithvp/hello-nginx-app:latest  &&
                     docker stop myapp || true &&
                     docker rm myapp || true &&
                     docker run -d --name myapp -p 80:80 rohithvp/hello-nginx-app:latest
