@@ -41,6 +41,7 @@ pipeline {
 
         stage('Deploy to Server') {
             steps {
+                shagent(['deploy-ssh-key']) {
                 sh '''
                 ssh -o StrictHostKeyChecking=no $DEPLOY_SERVER "
                     docker pull rohithvp/hello-nginx-app:latest  &&
@@ -49,6 +50,7 @@ pipeline {
                     docker run -d --name myapp -p 80:80 rohithvp/hello-nginx-app:latest
                 "
                 '''
+                }
             }
         }
     }
