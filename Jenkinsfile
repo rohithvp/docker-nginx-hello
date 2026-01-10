@@ -41,7 +41,7 @@ pipeline {
 
         stage('Deploy to Server') {
             steps {
-                shagent(['deploy-ssh-key']) {
+                sshagent(['deploy-ssh-key']) {
                 sh '''
                 ssh -o StrictHostKeyChecking=no $DEPLOY_SERVER "
                     docker pull rohithvp/hello-nginx-app:latest  &&
