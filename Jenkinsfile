@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "rohithvp/hello-nginx-app:latest"
+        IMAGE_NAME = "rohithvp/hello-nginx-app"
         DOCKERHUB = credentials('dockerhub-creds')
         DEPLOY_SERVER = "cloud_user@13.233.109.176"
     }
@@ -18,15 +18,20 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t rohithvp/hello-nginx-app:latest .'
+                sh 'docker build -t hello-nginx-app:latest .'
             }
         }
 
         stage('Push Image to DockerHub') {
             steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKERHUB_USR',
+                    passwordVariable: 'DOCKERHUB_PSW'
+                )]) {
                 sh '''
                 echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
-                docker push rohithvp/hello-nginx-app:latest
+                docker push hello-nginx-app:latest
 
                 '''
             }
