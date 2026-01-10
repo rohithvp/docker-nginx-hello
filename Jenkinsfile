@@ -34,8 +34,10 @@ pipeline {
                 docker push rohithvp/hello-nginx-app:latest
 
                 '''
+                 }
             }
         }
+            
 
         stage('Deploy to Server') {
             steps {
