@@ -31,7 +31,7 @@ pipeline {
                 )]) {
                 sh '''
                 echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
-                docker push hello-nginx-app:latest
+                docker push rohithvp/hello-nginx-app:latest
 
                 '''
             }
